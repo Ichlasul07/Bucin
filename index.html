@@ -471,9 +471,9 @@
             <input class="mytext" type="text" id="mynama" name="nama">
 
             <br><br>
-            <button type="button" onclick="cekNama()">
+            <!-- <button type="button" onclick="cekNama()">
                 Masuk
-            </button>
+            </button> -->
         </div>
     </div>
 
@@ -540,27 +540,27 @@
 
 	  		}
 
-			function cekNama() {
-    const inputNama = document.getElementById("mynama");
-    const nama = inputNama.value.trim().toLowerCase();
+// 			function cekNama() {
+//     const inputNama = document.getElementById("mynama");
+//     const nama = inputNama.value.trim().toLowerCase();
 
-    const namaDiizinkan = [
-        "eci",
-        "deci",
-        "deci nurlita"
-    ];
+//     const namaDiizinkan = [
+//         "eci",
+//         "deci",
+//         "deci nurlita"
+//     ];
 
-    if (namaDiizinkan.includes(nama)) {
-        alert("Halo " + inputNama.value.trim() + " ❤️ Selamat datang!");
+//     if (namaDiizinkan.includes(nama)) {
+//         alert("Halo " + inputNama.value.trim() + " ❤️ Selamat datang!");
 
-        // Lanjutkan proses website di sini.
-    } else {
-        alert("😡 KAMU GABISA BUKA WEBSITE INI KARENA KAMU BUKAN PACAR AKU! 😡");
+//         // Lanjutkan proses website di sini.
+//     } else {
+//         alert("😡 KAMU GABISA BUKA WEBSITE INI KARENA KAMU BUKAN PACAR AKU! 😡");
 
-        inputNama.value = "";
-        inputNama.focus();
-    }
-}
+//         inputNama.value = "";
+//         inputNama.focus();
+//     }
+// }
 			
 	  		$('img').on('dragstart', function(event) { event.preventDefault(); });
 	  		dragElement(document.getElementById("mywindow"));
@@ -707,15 +707,34 @@
 			    }
 			    return str.join(" ").substr(0, 20);
 			}
-			function mywrite(){
-				playOpening();
-				nama = $('#mynama').val();
-				$('#mynama').val('');
-				nama = capital_letter(nama);
-				localStorage.setItem("nama", nama);
-				namaku=localStorage.getItem("nama");
-				mystart();
-			}
+			
+function mywrite() {
+    nama = $('#mynama').val().trim();
+
+    // Nama yang diperbolehkan
+    const namaDiizinkan = [
+        "eci",
+        "deci",
+        "deci nurlita"
+    ];
+
+    // Validasi nama, tidak membedakan huruf besar/kecil
+    if (!namaDiizinkan.includes(nama.toLowerCase())) {
+        alert("😡 KAMU GABISA BUKA WEBSITE INI KARENA KAMU BUKAN PACAR AKU! 😡");
+        $('#mynama').val('');
+        return;
+    }
+
+    playOpening();
+
+    $('#mynama').val('');
+    nama = capital_letter(nama);
+    localStorage.setItem("nama", nama);
+    namaku = localStorage.getItem("nama");
+
+    mystart();
+}
+
 			function mystart(){
 				$('#spannama').text(localStorage.getItem("nama"));
 				$('#myform').hide();
