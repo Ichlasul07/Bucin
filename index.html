@@ -455,18 +455,28 @@
 				<div class="shortcut kiri" onclick="wpblur()">Blur</div>
 			</div>
 			<div class="mywindow" id="myform" style="width: 500px; height: 240px">
-				<div class="myheader">
-					Registrasi
-				</div>
-				<div class="mybody">
-					<div class="mytitle">
-						Isi identitas terlebih dahulu
-					</div>
-					<div class="mycontent">
-						Tekan tombol merah untuk reset nama.<br><br>
-						Nama :
-						<input class="mytext" type="text" id="mynama" name="nama">
-					</div>
+    <div class="myheader">
+        Registrasi
+    </div>
+
+    <div class="mybody">
+        <div class="mytitle">
+            Isi identitas terlebih dahulu
+        </div>
+
+        <div class="mycontent">
+            Tekan tombol merah untuk reset nama.<br><br>
+
+            Nama :
+            <input class="mytext" type="text" id="mynama" name="nama">
+
+            <br><br>
+            <button type="button" onclick="cekNama()">
+                Masuk
+            </button>
+        </div>
+    </div>
+
 					<div class="mybutton">
 						<div class="mybuttonyes" onclick="mywrite()">oke</div>
 					</div>
@@ -529,6 +539,29 @@
 		  		}
 
 	  		}
+
+			function cekNama() {
+    const inputNama = document.getElementById("mynama");
+    const nama = inputNama.value.trim().toLowerCase();
+
+    const namaDiizinkan = [
+        "eci",
+        "deci",
+        "deci nurlita"
+    ];
+
+    if (namaDiizinkan.includes(nama)) {
+        alert("Halo " + inputNama.value.trim() + " ❤️ Selamat datang!");
+
+        // Lanjutkan proses website di sini.
+    } else {
+        alert("😡 KAMU GABISA BUKA WEBSITE INI KARENA KAMU BUKAN PACAR AKU! 😡");
+
+        inputNama.value = "";
+        inputNama.focus();
+    }
+}
+			
 	  		$('img').on('dragstart', function(event) { event.preventDefault(); });
 	  		dragElement(document.getElementById("mywindow"));
 			function dragElement(elmnt) {
